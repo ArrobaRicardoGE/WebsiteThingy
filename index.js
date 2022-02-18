@@ -4,6 +4,7 @@ const fs = require('fs');
 const { marked } = require('marked');
 
 const app = express();
+app.set('view engine', 'ejs');
 
 app.get('/post/:post_id', (req, res) => {
     fs.readFile(
@@ -17,8 +18,7 @@ app.get('/post/:post_id', (req, res) => {
 });
 
 app.get('/dashboard/editor', (req, res) => {
-    console.log(path.join(__dirname, '/index.html'));
-    res.sendFile(path.join(__dirname, '/index.html'));
+    res.render('pages/editor');
 });
 
 app.listen(3000, () => {
