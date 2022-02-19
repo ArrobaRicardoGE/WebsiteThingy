@@ -2,6 +2,7 @@ const express = require('express');
 const path = require('path');
 const fs = require('fs');
 const { marked } = require('marked');
+const db = require('./database');
 
 const app = express();
 app.set('view engine', 'ejs');
@@ -19,6 +20,16 @@ app.get('/post/:post_id', (req, res) => {
 
 app.get('/dashboard/editor', (req, res) => {
     res.render('pages/editor');
+});
+
+app.get('/test/:name', async (req, res) => {
+    const ans = await db.insert('prod.db', 'posts', {
+        title: req.params.name,
+        updated_on: 1645225511,
+        created_on: 1645225511,
+        created_by: 1,
+    });
+    res.send(ans);
 });
 
 app.listen(3000, () => {

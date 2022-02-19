@@ -74,4 +74,4 @@ async function test() {
     console.log(rows);
 }
 
-test();
+module.exports = { insert, select };
