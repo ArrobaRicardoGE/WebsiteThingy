@@ -11,14 +11,15 @@
         <title>Editor test</title>
     </head>
     <body>
+        <h1><%= title %></h1>
         <div id="editor"></div>
         <script src="https://uicdn.toast.com/editor/latest/toastui-editor-all.min.js"></script>
         <script>
             const editor = new toastui.Editor({
                 el: document.querySelector('#editor'),
-                previewStyle: 'vertical',
-                height: '500px',
-                initialValue: 'content',
+                height: '75vh',
+                initialValue: `<%- data %>`,
+                initialEditType: 'wysiwyg',
             });
         </script>
     </body>

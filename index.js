@@ -18,8 +18,17 @@ app.get('/post/:post_id', (req, res) => {
     );
 });
 
-app.get('/dashboard/editor', (req, res) => {
-    res.render('pages/editor');
+app.get('/dashboard/editor/:post_id', (req, res) => {
+    fs.readFile(
+        path.join(__dirname, `public/${req.params.post_id}.md`),
+        'utf-8',
+        (err, data) => {
+            res.render('pages/editor', {
+                title: req.params.post_id,
+                data: data,
+            });
+        }
+    );
 });
 
 app.get('/test/:name', async (req, res) => {
